@@ -2,6 +2,11 @@
   display: none;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 #w-node-_84e69c87-2307-1c06-19ce-f1b39d4de5a1-82a4fe0d {
   -ms-grid-column: span 1;
   grid-column-start: span 1;
