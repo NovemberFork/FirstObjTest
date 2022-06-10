@@ -3,11 +3,9 @@ async function setBurgersAvailable() {
   let tokensLeft = await bContract.methods.tokenClaimsLeft(addr).call();
   document.getElementById("claim-burger").innerText = tokensLeft;
 
-  if (tokensLeft == 0) {
-    document
-      .getElementById("btn-redeem")
-      .addEventListener("click", claimTheseBurgers);
-  }
+  document
+    .getElementById("btn-redeem")
+    .addEventListener("click", claimTheseBurgers);
 }
 
 var JustClaimed = 0;

@@ -53,7 +53,7 @@ async function setMyBullsForClaiming() {
     "(" +
     cantUse +
     " of " +
-    youHave +
+    burgerBalance / 2 +
     " claimed)<br />";
   if (key) {
     document
