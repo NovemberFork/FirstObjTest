@@ -348,10 +348,10 @@ async function unstakeMyAstroBulls() {
         .add(web3.utils.toBN(bullId));
       /// see who owned what
       /// for launch
-      if (await parent.methods.balanceOf(_id, grill1).call()) {
+      if (await parent.methods.balanceOf(grill1, tokenId).call()) {
         astroIdsOld.push(tokenId.toString());
         amountsOld.push(1);
-      } else if (await parent.methods.balanceOf(_id, grill2).call()) {
+      } else if (await parent.methods.balanceOf(grill2, tokenId).call()) {
         astroIdsNew.push(tokenId.toString());
         amountsNew.push(1);
       }
