@@ -2536,6 +2536,15 @@ function getContractInstance(addr, abi) {
 }
 
 /**
+ * Function for seeing porting meta
+ */
+async function seePortingMeta(metaId) {
+  let mContract = getContractInstance(metabullAddr, metaABI);
+  let astroId = await mContract.methods.portingMeta(metaId).call();
+  return metaId, astroId;
+}
+
+/**
  * Gets account's nfts for collection
  */
 async function getNFTs(account, collection, chain) {
