@@ -25,7 +25,9 @@ async function claimTheseBurgers() {
     key += 1;
   }
   let tokensLeft = await bContract.methods.tokenClaimsLeft(addr).call();
+
   if (count > tokensLeft) {
+    alert("not enought burger claims");
     errorMsg += "not enough claims left, ";
     key += 1;
   }
