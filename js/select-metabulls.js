@@ -40,7 +40,13 @@ async function setMyBullsForClaiming() {
     }
   }
   let burgerBalance = await bContract.methods.balanceOf(addr).call();
+
+  // use this / 2 * burgers tyo
   let claimedMeta = await mContract.methods.balanceOf(addr).call();
+
+  let potentialClaims = parseInt(
+    youHave * parseInt(parseInt(burgerBalance) / 2)
+  );
 
   document.getElementById("redeem-txt").innerHTML =
     "<strong>To Redeem:</strong><br />- 2 Burgers are required AstroBull(s) in your wallet or in the Grill <br />- Choose 1 AstroBull to create a MetaBull <br />- MetaBull will inherit the traits of the Original AstroBull<br />‍<br /><strong >You have : </strong ><br />" +
@@ -48,13 +54,13 @@ async function setMyBullsForClaiming() {
     " x AstroBulls  <br />" +
     burgerBalance +
     " x Burgers <br />" +
-    cantUse +
+    claimedMeta +
     " x MetaBull " +
     "(" +
-    cantUse +
+    potentialClaims +
     " of " +
-    burgerBalance / 2 +
-    " claimed)<br />";
+    youHave +
+    " can be claimed)<br />";
   if (key) {
     document
       .getElementById("claim-meta-btn")

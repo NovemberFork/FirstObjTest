@@ -139,7 +139,7 @@ async function stakeMyAstroBulls() {
   let key = 0;
   let astroIds = [];
   let amounts = [];
-  let errorMsg = "Error: ";
+  let errorMsg = "Error:\n";
   let gContract = getContractInstance(grill2, grillABI);
   let grillOpen = await gContract.methods.isStaking().call();
 
@@ -159,21 +159,21 @@ async function stakeMyAstroBulls() {
   }
 
   if (!grillOpen) {
-    errorMsg += "the grill is not currently open, ";
+    errorMsg += "the grill is not currently open\n";
     key += 1;
   }
   if (astroIds.length == 0) {
-    errorMsg += "must select bulls to stake, ";
+    errorMsg += "must select bulls to stake\n";
     key += 1;
   }
   let status = await setGrillApproval();
   if (!status) {
-    errorMsg += "the grill is not an approved operator of your tokens, ";
+    errorMsg += "the grill is not an approved operator of your tokens\n";
     key += 1;
   }
 
   if (await gContract.methods.blacklist(addr).call()) {
-    errorMsg += "this address is blacklisted, ";
+    errorMsg += "this address is blacklisted\n";
     key += 1;
   }
 
@@ -188,6 +188,7 @@ async function stakeMyAstroBulls() {
   } else {
     errorMsg += "try again";
     console.log(errorMsg);
+    alert(errorMsg);
   }
 }
 
@@ -224,16 +225,21 @@ async function setGrillApproval() {
 
 /**
  * Function to convert decimal tokenId -> hex 1155 json format (64 padded)
- * @notice tokenId must be a string
+ * @notice tokenId must be a string and is between 1-10,000
  */
-// function tokenToJson(tokenId) {
-//   let dec = web3.utils.toBN(tokenId);
-//   let hex = web3.utils.toHex(dec);
-//   let pad = 64 - hex.length + 2;
-//   let padded = "";
-//   for (let i = 0; i < pad; i++) {
-//     padded += "0";
-//   }
-//   padded += hex.substring(2);
-//   return padded + ".json";
-// }
+function tokenToJson(tokenId) {
+  let base = "https://astrofrens-metadata.s3.amazonaws.com/AstroFrens/";
+  let dec = web3.utils.toBN(
+    web3.utils
+      .toBN("340282366920938463463374607431768211456")
+      .add(web3.utils.toBN(tokenId))
+  );
+  let hex = web3.utils.toHex(dec);
+  let pad = 64 - hex.length + 2;
+  let padded = "";
+  for (let i = 0; i < pad; i++) {
+    padded += "0";
+  }
+  padded += hex.substring(2);
+  return base + padded + ".json";
+}

@@ -11,23 +11,29 @@ async function setTheseClaimers() {
 }
 async function claimMetaBulls() {
   let key = 0;
-  let errorMsg = "Error: ";
+  let errorMsg = "Error:\n";
   let mContract = getContractInstance(metabullAddr, metaABI);
   let bContract = getContractInstance(burger, burgerABI);
   let isMinting = await mContract.methods.isMinting().call();
 
   if (!isMinting) {
-    errorMsg += "minting is not active, ";
+    errorMsg += "minting is not active\n";
     key += 1;
   }
   if (astroIds.length == 0) {
-    errorMsg += "must use > 0 bulls, ";
+    errorMsg += "must use > 0 bulls\n";
     key += 1;
+  }
+  // check if metacontract is burner;
+  let isBurner = await bContract.methods.burners(metabullAddr).call();
+  if (!isBurner) {
+    key += 1;
+    errorMsg += "metabull contract not set as burner\n";
   }
   let burgerBalance = await bContract.methods.balanceOf(addr).call();
   let toBurn = await mContract.methods.burnScalar().call();
   if (burgerBalance < toBurn * astroIds.length) {
-    errorMsg += "not enough burgers to burn, ";
+    errorMsg += "insufficient burger balance\n";
     key += 1;
   }
   if (key == 0) {
@@ -38,6 +44,7 @@ async function claimMetaBulls() {
   } else {
     errorMsg += "try again";
     console.log(errorMsg);
+    alert(errorMsg);
   }
 }
 
