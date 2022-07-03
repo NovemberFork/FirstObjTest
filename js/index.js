@@ -3305,8 +3305,8 @@ const erc20ABI = [
 ];
 // start/connect moralis server
 Moralis.start({
-  serverUrl: "https://2crxutycxebm.usemoralis.com:2053/server",
-  appId: "87bn7GmCTxHpeW474zEXGOvvpnnTZwoHJXE1OKd6",
+  serverUrl: "https://hg3eb8z82exv.usemoralis.com:2053/server",
+  appId: "aN8qDLyoKuR0nH7x0Ar1bKjEnxCY0yhPdtJD4bFu",
   web3Library: Web3,
 });
 // re run the dapp after a user changes accounts

@@ -1,0 +1,20 @@
+.w-form-done1 {
+  display: none;
+  padding: 20px;
+  text-align: center;
+  background-color: #dddddd;
+}
+.w-form-fail1 {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ffdede;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

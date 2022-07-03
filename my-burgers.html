@@ -97,7 +97,7 @@
                 />
                 <div class="text-block-4">Locker</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" id="w-dropdown-list-1">
                 <div class="div-block-2">
                   <a href="astroverse-locker.html" class="side-sub-link"
                     >Astrobull Locker</a
@@ -117,10 +117,23 @@
           </div>
         </div>
         <div class="w-col w-col-9">
-          <h3 class="heading-2-02">My Burgers</h3>
+          <!-- <h3 class="heading-2-02">All Good. You claimed Burgers.</h3> -->
+
+          <div class="div-block-39">
+            <div class="text-block-32">All Good. You claimed Burgers.<span class="text-span-6"></span></div>
+          </div>
+          <div class="paragraph-3">Visit the <a href="#" class="link-5">AstroFrens Shop</a> to redeem your Burgers for the juiciest goodies in the galaxy!</div>
+
+          
           <div class="w-layout-grid grid-13">
             <div id="w-node-_84e69c87-2307-1c06-19ce-f1b39d4de5a1-82a4fe0d">
-              <img
+              <div style="border-radius: 10px; border: 2px solid #ccc;background-color: black;">
+                <video autoplay="" loop="" style="width: 100%;height: 100%;border-radius: 10px;" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+                  <source src="videos/StackBurger.mp4" data-wf-ignore="true">
+                  
+                </video>
+              </div>
+              <!-- <img
                 src="images/burgertoken.jpg"
                 loading="lazy"
                 sizes="100vw"
@@ -130,24 +143,30 @@
                   images/burgertoken.jpg        914w
                 "
                 alt=""
-              />
+              /> -->
             </div>
             <div
               id="w-node-ec369ae1-900e-2a36-5775-0c524b0ebecf-82a4fe0d"
               class="div-block-35"
             >
               <div>
-                <div class="claim-text">
-                  You have
-                  <span id="burger-bal" class="text-span" ,>...</span>
+                <div class="claim-text" style="text-align: center;font-size: 40px;">
+                  You have<br /><br /><br />
+                  <span id="burger-bal" class="text-span" ,>...</span><br /><br /><br />
                   Burgers<br />
                 </div>
               </div>
-              <div class="text-block-30">
+
+              <div class="text-block-36" style="margin-top: 100px;">You will see 1 Burger NFT with multiple units in Opensea.<br>
+                <!-- <br>Visit the <a href="#" class="link-5">AstroFrens Shop</a> to redeem your Burgers <br>for the juiciest goodies in the galaxy! -->
+              </div>
+
+              <!-- <div class="text-block-30" style="padding-top:20px ;">
                 Make sure your wallet is connected<br />If you have locked your
                 Bulls, you can
-                <a href="claim-burger.html"><u>claim your Burgers.</u></a>
-              </div>
+                <a href="claim-burger.html" style="color:#fff ;"><u>claim your Burgers.</u></a>
+              </div> -->
+
               <!-- <div class="div-block-36">
                 <div class="text-block-30">
                   How many do you want to claim now?
@@ -292,6 +311,7 @@
     <script src="js/webflow.js" type="text/javascript"></script>
     <script src="js/index.js" type="text/javascript"></script>
     <script src="js/my-burgers.js" type="text/javascript"></script>
+    <script src="js/common.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
   </body>
 </html>

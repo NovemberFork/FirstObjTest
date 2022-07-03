@@ -2,22 +2,22 @@
 <!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Thu Jun 09 2022 11:42:40 GMT+0000 (Coordinated Universal Time)  -->
 <html
-  data-wf-page="629e1ad2a21df0444936a54c"
+  data-wf-page="629e1d5bb47f327ee28bc133"
   data-wf-site="621ec01188959b8002420547"
   lang="en"
 >
   <head>
     <meta charset="utf-8" />
-    <title>shop-04</title>
-    <meta content="shop-04" property="og:title" />
-    <meta content="shop-04" property="twitter:title" />
+    <title>shop-05</title>
+    <meta content="shop-05" property="og:title" />
+    <meta content="shop-05" property="twitter:title" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
     <link href="css/normalize.css" rel="stylesheet" type="text/css" />
     <link href="css/webflow.css" rel="stylesheet" type="text/css" />
     <link href="css/astrofrens.webflow.css" rel="stylesheet" type="text/css" />
-    <link href="css/astrofrens.webflow2.css" rel="stylesheet" type="text/css" />
-    <link href="css/astrofrens.webflow3.css" rel="stylesheet" type="text/css" />
+    <link href="css/matt.css" rel="stylesheet" type="text/css" />
+
     <script
       src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
       type="text/javascript"
@@ -43,13 +43,13 @@
             (n.className += t + "touch");
       })(window, document);
     </script>
-    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="images/webclip.png" rel="apple-touch-icon" />
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.7.1/web3-provider.min.js"></script>
     <script src="https://unpkg.com/moralis@1.6.0/dist/moralis.js"></script>
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="images/webclip.png" rel="apple-touch-icon" />
   </head>
-  <body class="body" id="meta-claiming2">
+  <body class="body" id="addy-sub">
     <div class="my-container w-container">
       <div class="w-layout-grid header-grid">
         <div id="w-node-_991f76a2-a79b-331e-9211-da1e511209c9-511209c7">
@@ -95,7 +95,7 @@
                 />
                 <div class="text-block-4">Locker</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list" id="w-dropdown-list-1">
+              <nav class="dropdown-list w-dropdown-list">
                 <div class="div-block-2">
                   <a href="astroverse-locker.html" class="side-sub-link"
                     >Astrobull Locker</a
@@ -128,102 +128,94 @@
             "
             alt=""
           />
-          <h3 class="heading-2">
-            You chose these AstroBulls to redeem for MetaBull
-          </h3>
-          <div class="w-layout-grid my-grid1-02" , id="to-use-gal">
-            <!-- <div
-              id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df98742ec-4936a54c"
-              class="g-box"
-            >
-              <div class="div-block-15">
-                <img
-                  src="images/burgertoken.jpg"
-                  loading="lazy"
-                  id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df98742ee-4936a54c"
-                  sizes="100vw"
-                  srcset="
-                    images/burgertoken-p-500.jpeg 500w,
-                    images/burgertoken-p-800.jpeg 800w,
-                    images/burgertoken.jpg        914w
-                  "
-                  alt=""
-                />
-                <div class="box-title">A Burger Club #5</div>
-                <div class="text-block-9">#1234</div>
+          <h3 class="heading-2">Shipment address</h3>
+          <p class="paragraph-3">
+            Please enter your information below so we know where to send your
+            physical collectible!<br />Please provide a real email address so we
+            can send you any relevant updates regarding fulfillment.
+          </p>
+          <div class="div-block-31">
+            <div class="w-layout-grid grid-11">
+              <div
+                id="w-node-_084c89e1-49df-9932-80f8-ae3b2ce58fb9-e28bc133"
+              ></div>
+              <div>
+                <div class="w-form">
+                  <form
+                    id="wf-form-frm-order"
+                    name="wf-form-frm-order"
+                    data-name="frm-order"
+                    method="post"
+                    onsubmit="getAndPass()"
+                  >
+                    <label for="name" class="field-label">Name</label
+                    ><input
+                      type="text"
+                      class="w-input"
+                      maxlength="256"
+                      name="name"
+                      data-name="name"
+                      placeholder=""
+                      id="name"
+                      required=""
+                    /><label for="address" class="field-label">Address</label
+                    ><input
+                      type="text"
+                      class="w-input"
+                      maxlength="256"
+                      name="address"
+                      data-name="address"
+                      placeholder=""
+                      id="address"
+                    /><label for="phone" class="field-label">Phone</label
+                    ><input
+                      type="text"
+                      class="w-input"
+                      maxlength="256"
+                      name="phone"
+                      data-name="phone"
+                      placeholder=""
+                      id="phone"
+                    /><label for="email" class="field-label"
+                      >Email Address</label
+                    ><input
+                      type="email"
+                      class="w-input"
+                      maxlength="256"
+                      name="email"
+                      data-name="Email"
+                      placeholder=""
+                      id="email"
+                      required=""
+                    />
+                    <div class="div-block-32">
+                      <input
+                        type="submit"
+                        value="Cancel"
+                        data-wait="Please wait..."
+                        class="btn-conect-01 w-button"
+                      /><input
+                        type="submit"
+                        value="Submit"
+                        data-wait="Please wait..."
+                        class="btn-conect-01 w-button"
+                        onsubmit="getAndPass()"
+                      />
+                    </div>
+                  </form>
+                  <div class="w-form-done1" id="w-form-done1">
+                    <div>Thank you! Your submission has been received!</div>
+                  </div>
+                  <div class="w-form-fail1" , id="w-form-fail1">
+                    <div>
+                      Oops! Something went wrong while submitting the form.
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div
-              id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df98742f3-4936a54c"
-              class="g-box"
-            >
-              <div class="div-block-15">
-                <img
-                  src="images/burgertoken.jpg"
-                  loading="lazy"
-                  id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df98742f5-4936a54c"
-                  sizes="100vw"
-                  srcset="
-                    images/burgertoken-p-500.jpeg 500w,
-                    images/burgertoken-p-800.jpeg 800w,
-                    images/burgertoken.jpg        914w
-                  "
-                  alt=""
-                />
-                <div class="box-title">A Burger Club #5</div>
-                <div class="text-block-9">#1234</div>
-              </div>
-            </div>
-            <div
-              id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df98742fa-4936a54c"
-              class="g-box"
-            >
-              <div class="div-block-15">
-                <img
-                  src="images/burgertoken.jpg"
-                  loading="lazy"
-                  id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df98742fc-4936a54c"
-                  sizes="100vw"
-                  srcset="
-                    images/burgertoken-p-500.jpeg 500w,
-                    images/burgertoken-p-800.jpeg 800w,
-                    images/burgertoken.jpg        914w
-                  "
-                  alt=""
-                />
-                <div class="box-title">A Burger Club #5</div>
-                <div class="text-block-9">#1234</div>
-              </div>
-            </div>
-            <div
-              id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df9874301-4936a54c"
-              class="g-box"
-            >
-              <div class="div-block-15">
-                <img
-                  src="images/burgertoken.jpg"
-                  loading="lazy"
-                  id="w-node-d0ed7b3d-22b9-d6ea-4b8c-052df9874303-4936a54c"
-                  sizes="100vw"
-                  srcset="
-                    images/burgertoken-p-500.jpeg 500w,
-                    images/burgertoken-p-800.jpeg 800w,
-                    images/burgertoken.jpg        914w
-                  "
-                  alt=""
-                />
-                <div class="box-title">A Burger Club #5</div>
-                <div class="text-block-9">#1234</div>
-              </div>
-            </div> -->
-          </div>
-          <div class="div-block-33">
-            <div class="text-block-29">Redeem MetaBulls<br />‍</div>
-            <div class="div-block-21">
-              <a href="shop-01.html" class="btn-conect-01 w-button"> Back </a>
-              <a href="#" class="btn-conect-01 w-button" id="redeem-btn"
-                >Redeem</a
-              >
+              <div
+                id="w-node-_82133c93-a102-be2f-2a69-2ff9b56be10f-e28bc133"
+              ></div>
             </div>
           </div>
         </div>
@@ -302,8 +294,7 @@
     ></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <script src="js/index.js" type="text/javascript"></script>
-    <script src="js/select-metabulls2.js" type="text/javascript"></script>
-    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/addy-sub.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
   </body>
 </html>

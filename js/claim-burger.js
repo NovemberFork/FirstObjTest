@@ -31,7 +31,7 @@ async function claimTheseBurgers() {
     errorMsg += "not enough claims left, ";
     key += 1;
   }
-  if (key >= 0) {
+  if (key == 0) {
     if (confirm("Claim " + count + " burgers?")) {
       //claim
       try {

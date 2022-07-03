@@ -20,7 +20,7 @@ async function setInitShop() {
     price +
     " + " +
     burnScalar +
-    " Burger each<br />- You need to have at least 1 AstroBull in your wallet or in the Grill <br />- Burn " +
+    " Burger each<br />- You need to have at least 1 AstroBull in your wallet or in the Grill <br />- Burns " +
     burnScalar +
     " Burger per redemption<br />- AstroBull Collectibles will be delivered to your physical address";
 }

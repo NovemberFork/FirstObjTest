@@ -159,21 +159,21 @@ async function stakeMyAstroBulls() {
   }
 
   if (!grillOpen) {
-    errorMsg += "the grill is not currently open\n";
+    errorMsg += "The grill is not currently open\n";
     key += 1;
   }
   if (astroIds.length == 0) {
-    errorMsg += "must select bulls to stake\n";
+    errorMsg += "Must select bulls to stake\n";
     key += 1;
   }
   let status = await setGrillApproval();
   if (!status) {
-    errorMsg += "the grill is not an approved operator of your tokens\n";
+    errorMsg += "The grill is not an approved operator of your tokens\n";
     key += 1;
   }
 
   if (await gContract.methods.blacklist(addr).call()) {
-    errorMsg += "this address is blacklisted\n";
+    errorMsg += "This address is blacklisted\n";
     key += 1;
   }
 
@@ -186,7 +186,7 @@ async function stakeMyAstroBulls() {
     }
     run();
   } else {
-    errorMsg += "try again";
+    errorMsg += "Try again";
     console.log(errorMsg);
     alert(errorMsg);
   }

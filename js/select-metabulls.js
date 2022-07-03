@@ -19,48 +19,46 @@ async function getAllMyBulls() {
 }
 
 async function setMyBullsForClaiming() {
+  let mContract = getContractInstance(metabullAddr, metaABI);
+  let bContract = getContractInstance(burger, burgerABI);
   let gallary = document.getElementById("pot-meta-gal");
   let gallary2 = document.getElementById("used-meta-gal");
   let allIds = await getAllMyBulls();
-
-  let mContract = getContractInstance(metabullAddr, metaABI);
-  let bContract = getContractInstance(burger, burgerABI);
-  let pots = [];
+  /// set top stats first
+  let burnScalar = await mContract.methods.burnScalar().call();
+  let youHave = "...",
+    cantUse = "...",
+    burgerBalance = "...",
+    claimedMeta = "...",
+    potentialClaims = "...",
+    tot = allIds.length;
+  let command = `<strong>To Redeem:</strong><br />- ${burnScalar} Burgers are required for 1 Metaverse AstroBull (MetaBull)<br />- You need to have at least 1 AstroBull(s) in your wallet or in the Grill <br />- Choose 1 AstroBull to create a MetaBull <br />- MetaBull will inherit the traits of the Original AstroBull<br />‍<br /><strong >You have : </strong ><br />${tot} x AstroBulls  <br />${burgerBalance} x Burgers <br />${claimedMeta} x MetaBull (${potentialClaims} of ${youHave} can be claimed)<br />`;
+  document.getElementById("redeem-txt").innerHTML = command;
   let key = false;
-  let youHave = 0;
-  let cantUse = 0;
+  (youHave = 0), (cantUse = 0);
+  let addLater1 = [];
+  let addLater2 = [];
   for (let i = 0; i < allIds.length; i++) {
     if (!(await mContract.methods.portedIds(allIds[i]).call())) {
-      gallary.appendChild(await makeThing(allIds[i]));
+      addLater1.push(allIds[i]);
       key = true;
       youHave += 1;
     } else {
-      gallary2.appendChild(await makeThing(allIds[i]));
+      addLater2.push(allIds[i]);
       cantUse += 1;
     }
   }
-  let burgerBalance = await bContract.methods.balanceOf(addr).call();
-
-  // use this / 2 * burgers tyo
-  let claimedMeta = await mContract.methods.balanceOf(addr).call();
-
-  let potentialClaims = parseInt(
-    youHave * parseInt(parseInt(burgerBalance) / 2)
-  );
-
-  document.getElementById("redeem-txt").innerHTML =
-    "<strong>To Redeem:</strong><br />- 2 Burgers are required AstroBull(s) in your wallet or in the Grill <br />- Choose 1 AstroBull to create a MetaBull <br />- MetaBull will inherit the traits of the Original AstroBull<br />‍<br /><strong >You have : </strong ><br />" +
-    youHave +
-    " x AstroBulls  <br />" +
-    burgerBalance +
-    " x Burgers <br />" +
-    claimedMeta +
-    " x MetaBull " +
-    "(" +
-    potentialClaims +
-    " of " +
-    youHave +
-    " can be claimed)<br />";
+  burgerBalance = await bContract.methods.balanceOf(addr).call();
+  claimedMeta = await mContract.methods.balanceOf(addr).call();
+  potentialClaims = parseInt(youHave * parseInt(parseInt(burgerBalance) / 2));
+  command = `<strong>To Redeem:</strong><br />- ${burnScalar} Burgers are required for 1 Metaverse AstroBull (MetaBull)<br />- You need to have at least 1 AstroBull(s) in your wallet or in the Grill <br />- Choose 1 AstroBull to create a MetaBull <br />- MetaBull will inherit the traits of the Original AstroBull<br />‍<br /><strong >You have : </strong ><br />${tot} x AstroBulls  <br />${burgerBalance} x Burgers <br />${claimedMeta} x MetaBull (${potentialClaims} of ${youHave} can be claimed)<br />`;
+  for (thing in addLater1) {
+    gallary.appendChild(await makeThing(addLater1[thing]));
+  }
+  for (thing in addLater2) {
+    gallary2.appendChild(await makeThing(addLater2[thing]));
+  }
+  document.getElementById("redeem-txt").innerHTML = command;
   if (key) {
     document
       .getElementById("claim-meta-btn")

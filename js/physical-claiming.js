@@ -24,6 +24,10 @@ async function setShopperStats() {
   let price = (erc20Cost / 10 ** dec).toFixed(2);
 
   let balbal = (bal20 / 10 ** dec).toFixed(2);
+  let phys = parseInt(balbal / price);
+  if (phys > sizeOfList) {
+    phys = sizeOfList;
+  }
 
   document.getElementById("shopper-info").innerHTML =
     "<strong>Price $" +
@@ -40,7 +44,9 @@ async function setShopperStats() {
     burgerBalance +
     " x Burgers </strong>and<strong> " +
     balbal +
-    " USDC</strong <strong> AstroBull Collectibles</strong><br />";
+    " USDC</strong> in your wallet<br />You can redeem up to <strong> " +
+    phys +
+    " AstroBull Collectibles</strong><br />";
 
   document.getElementById("moneymoney").innerText = "+ " + price + " USDC";
   document.getElementById("burgerburger").innerText =
@@ -74,42 +80,48 @@ async function claimPhys() {
   let isClaiming = await pContract.methods.isClaiming().call();
   if (!isClaiming) {
     key += 1;
-    errorMsg += "claiming is not active\n";
+    errorMsg += "Claiming is not active\n";
   }
   let isBurner = await bContract.methods.burners(phybullAddr).call();
   if (!isBurner) {
     key += 1;
-    errorMsg += "physical bull contract not set as burner\n";
+    errorMsg += "Physical bull contract not set as burner\n";
   }
   if (cost > balbal) {
     key += 1;
-    errorMsg += "insufficient erc20 balance\n";
+    errorMsg += "Insufficient erc20 balance\n";
   }
   let status = await setERC20Approval(f);
   if (!status) {
     key += 1;
-    errorMsg += "insufficient erc20 allowance for physical bull contract\n";
+    errorMsg += "Insufficient erc20 allowance for physical bull contract\n";
   }
   if (costBurg > burgerBalance) {
     key += 1;
-    errorMsg += "insufficient burger balance\n";
+    errorMsg += "Insufficient burger balance\n";
   }
 
   let claims = await pContract.methods.accountClaims(addr).call();
   let maxClaims = await pContract.methods.maxClaims().call();
   if (claims + f > maxClaims) {
     key += 1;
-    console.log(claims, f, maxClaims);
-    errorMsg += "claiming too many physical bulls\n";
+    errorMsg += "Claiming too many physical bulls\n";
   }
-
+  // fix key, uncomment pCo...
   if (key == 0) {
     if (confirm("Claim " + f + " physical bulls?") == true) {
-      await pContract.methods.claimBulls(f).send({ from: addr });
+      try {
+        // await pContract.methods.claimBulls(f).send({ from: addr });
+        localStorage.setItem("JustGot", f);
+        window.location = "shop-05.html";
+        console.log("a");
+      } catch (error) {
+        console.log("Txn rejected");
+      }
     }
     run();
   } else {
-    errorMsg += "try again";
+    errorMsg += "Try again";
     console.log(errorMsg);
     alert(errorMsg);
   }
