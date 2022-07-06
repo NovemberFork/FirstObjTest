@@ -198,7 +198,6 @@ async function stakeMyAstroBulls() {
 async function setGrillApproval() {
   // check if approved first //
   var parent = getContractInstance(astroAddr, superABI);
-  console.log(parent);
   var operator = grill2;
   let status = await parent.methods.isApprovedForAll(addr, operator).call();
   if (!status) {

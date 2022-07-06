@@ -98,9 +98,10 @@ async function setStakesStats() {
   var today = month + " " + day + ", " + year;
   document.getElementById("astro-volume-date").innerText = today;
   // set astro floor price for staked bulls
-  let aFloor = await getFloorPrice(astroAddr);
-  let pp = (aFloor * (stakedIds1.length + stakedIds2.length)).toFixed(4);
-  document.getElementById("astro-volume").innerText = " Ξ " + pp;
+  // let aFloor = await getFloorPrice(astroAddr);
+  // console.log(aFloor);
+  // let pp = (aFloor * (stakedIds1.length + stakedIds2.length)).toFixed(4);
+  // document.getElementById("astro-volume").innerText = " Ξ " + pp;
   // await getStakerCounts("ASTRO");
   await setUniqueStakes(stakedIds1, stakedIds2);
   // document.getElementById("astro-owner-count").innerText = aOwners;
@@ -112,6 +113,8 @@ async function setStakesStats() {
 async function getNFTIds(account, collection, chain) {
   let cursor = null;
   let ids = [];
+  let aFloor = await getFloorPrice(astroAddr);
+
   do {
     const response = await Moralis.Web3API.account.getNFTs({
       chain: chain,
@@ -130,7 +133,25 @@ async function getNFTIds(account, collection, chain) {
       }
       document.getElementById("astro-stake-total").innerText =
         parseInt(oldNum) + parseInt(1);
-      // increment stakers
+
+      /// also set floor counters
+
+      // var nn = document.getElementById("astro-volume").innerText;
+      // if (nn == "...") {
+      //   nn = parseInt(0);
+      // } else {
+      //   parseInt(oldNum);
+      // }
+
+      var nn = document.getElementById("astro-volume").innerText;
+      if (nn == "Ξ ...") {
+        nn = 0.0;
+      } else {
+        nn = nn.split(" ");
+        nn = parseFloat(nn[1]);
+      }
+      let pp = (aFloor + nn).toFixed(3);
+      document.getElementById("astro-volume").innerText = " Ξ " + pp;
     }
     cursor = response.cursor;
   } while (cursor != "" && cursor != null);

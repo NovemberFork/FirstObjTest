@@ -19,6 +19,13 @@ async function getAllMyBulls() {
 }
 
 async function setMyBullsForClaiming() {
+  let shop1 = document.getElementById("shop2.0");
+  let shop2 = document.getElementById("shop2.1");
+  let shop3 = document.getElementById("shop2.2");
+  let shop4 = document.getElementById("shop2.3");
+  let shop5 = document.getElementById("shop2.4");
+  let shop6 = document.getElementById("shop2.5");
+
   let mContract = getContractInstance(metabullAddr, metaABI);
   let bContract = getContractInstance(burger, burgerABI);
   let gallary = document.getElementById("pot-meta-gal");
@@ -33,7 +40,8 @@ async function setMyBullsForClaiming() {
     potentialClaims = "...",
     tot = allIds.length;
   let command = `<strong>To Redeem:</strong><br />- ${burnScalar} Burgers are required for 1 Metaverse AstroBull (MetaBull)<br />- You need to have at least 1 AstroBull(s) in your wallet or in the Grill <br />- Choose 1 AstroBull to create a MetaBull <br />- MetaBull will inherit the traits of the Original AstroBull<br />‍<br /><strong >You have : </strong ><br />${tot} x AstroBulls  <br />${burgerBalance} x Burgers <br />${claimedMeta} x MetaBull (${potentialClaims} of ${youHave} can be claimed)<br />`;
-  document.getElementById("redeem-txt").innerHTML = command;
+  shop1.innerText = burnScalar;
+  // document.getElementById("redeem-txt").innerHTML = command;
   let key = false;
   (youHave = 0), (cantUse = 0);
   let addLater1 = [];
@@ -51,6 +59,13 @@ async function setMyBullsForClaiming() {
   burgerBalance = await bContract.methods.balanceOf(addr).call();
   claimedMeta = await mContract.methods.balanceOf(addr).call();
   potentialClaims = parseInt(youHave * parseInt(parseInt(burgerBalance) / 2));
+
+  shop2.innerText = tot;
+  shop3.innerText = burgerBalance;
+  shop4.innerText = claimedMeta;
+  shop5.innerText = potentialClaims;
+  shop6.innerText = youHave;
+
   command = `<strong>To Redeem:</strong><br />- ${burnScalar} Burgers are required for 1 Metaverse AstroBull (MetaBull)<br />- You need to have at least 1 AstroBull(s) in your wallet or in the Grill <br />- Choose 1 AstroBull to create a MetaBull <br />- MetaBull will inherit the traits of the Original AstroBull<br />‍<br /><strong >You have : </strong ><br />${tot} x AstroBulls  <br />${burgerBalance} x Burgers <br />${claimedMeta} x MetaBull (${potentialClaims} of ${youHave} can be claimed)<br />`;
   for (thing in addLater1) {
     gallary.appendChild(await makeThing(addLater1[thing]));
@@ -58,7 +73,7 @@ async function setMyBullsForClaiming() {
   for (thing in addLater2) {
     gallary2.appendChild(await makeThing(addLater2[thing]));
   }
-  document.getElementById("redeem-txt").innerHTML = command;
+  // document.getElementById("redeem-txt").innerHTML = command;
   if (key) {
     document
       .getElementById("claim-meta-btn")

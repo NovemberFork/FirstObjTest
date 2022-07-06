@@ -4,13 +4,10 @@ const myForm = document.getElementById("wf-form-frm-order");
 
 myForm.addEventListener("submit", async function (e) {
   const errors = [];
-
   let name = document.getElementById("name").value;
   let address = document.getElementById("address").value;
   let phone = document.getElementById("phone").value;
   let email = document.getElementById("email").value;
-
-  // Check inputs...
 
   let x = document.getElementById("w-form-done1"); //.style.display = "inline";
   let y = document.getElementById("w-form-fail1"); //.style.display = "none";

@@ -1,4 +1,13 @@
 async function setShopperStats() {
+  let shop1 = document.getElementById("shop3.0");
+  let shop2 = document.getElementById("shop3.1");
+  let shop3 = document.getElementById("shop3.2");
+  let shop4 = document.getElementById("shop3.3");
+  let shop5 = document.getElementById("shop3.4");
+  let shop6 = document.getElementById("shop3.5");
+  let shop7 = document.getElementById("shop3.6");
+  let shop8 = document.getElementById("shop3.7");
+
   let itemList = document.getElementsByClassName("shopper-grabber")[0];
 
   let pContract = getContractInstance(phybullAddr, phyABI);
@@ -9,6 +18,7 @@ async function setShopperStats() {
     el.innerText = i + 1 + " Collectibles";
     itemList.appendChild(el);
   }
+  let hasGotten = await pContract.methods.accountClaims(addr).call();
   let burnScalar = await pContract.methods.burnScalar().call();
   let erc20Cost = await pContract.methods.erc20Cost().call();
   let erc20Address = await pContract.methods.erc20().call();
@@ -20,33 +30,22 @@ async function setShopperStats() {
   let burgerBalance = await bContract.methods.balanceOf(addr).call();
 
   let dec = await eContract.methods.decimals().call();
-
+  let maxmax = sizeOfList - hasGotten;
   let price = (erc20Cost / 10 ** dec).toFixed(2);
-
   let balbal = (bal20 / 10 ** dec).toFixed(2);
   let phys = parseInt(balbal / price);
-  if (phys > sizeOfList) {
-    phys = sizeOfList;
+  if (phys > maxmax) {
+    phys = maxmax;
   }
 
-  document.getElementById("shopper-info").innerHTML =
-    "<strong>Price $" +
-    price +
-    " USDC and " +
-    burnScalar +
-    " Burger<br /><br />To Redeem with Burger:<br /></strong >- Hold at least 1 AstroBull + " +
-    burnScalar +
-    " Burger + $" +
-    price +
-    " in your wallet<br />- Redeeming will burn the Burger<br />- AstroBull holders may redeem up to " +
-    sizeOfList +
-    " physical collectibles per wallet<br /><br />‍<strong>Status:</strong><br />There are <strong>" +
-    burgerBalance +
-    " x Burgers </strong>and<strong> " +
-    balbal +
-    " USDC</strong> in your wallet<br />You can redeem up to <strong> " +
-    phys +
-    " AstroBull Collectibles</strong><br />";
+  shop1.innerText = "$" + price;
+  shop2.innerText = burnScalar;
+  shop3.innerText = burnScalar;
+  shop4.innerText = "$" + price;
+  shop5.innerText = sizeOfList;
+  shop6.innerText = burgerBalance;
+  shop7.innerText = "$" + balbal;
+  shop8.innerText = phys;
 
   document.getElementById("moneymoney").innerText = "+ " + price + " USDC";
   document.getElementById("burgerburger").innerText =
@@ -111,10 +110,9 @@ async function claimPhys() {
   if (key == 0) {
     if (confirm("Claim " + f + " physical bulls?") == true) {
       try {
-        // await pContract.methods.claimBulls(f).send({ from: addr });
+        await pContract.methods.claimBulls(f).send({ from: addr });
         localStorage.setItem("JustGot", f);
         window.location = "shop-05.html";
-        console.log("a");
       } catch (error) {
         console.log("Txn rejected");
       }
